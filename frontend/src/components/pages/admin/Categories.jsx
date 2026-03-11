@@ -35,8 +35,7 @@ const categories = [
 
 export default function Categories() {
   return (
-    <div className="min-h-screen bg-pink-50">
-      <div className="rounded-3xl bg-white/70 shadow-sm border border-pink-100 p-8">
+    <div className="rounded-3xl bg-white/70 shadow-sm border border-pink-100 p-8">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
@@ -88,74 +87,90 @@ export default function Categories() {
 
         {/* Table */}
         <div className="overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-sm">
-          <div className="grid grid-cols-[1.5fr,2fr,3fr,1.2fr,1.3fr,1.5fr] bg-pink-50 px-6 py-4 text-xs font-semibold uppercase tracking-wide text-pink-500">
-            <div>Image</div>
-            <div>Category Name</div>
-            <div>Description</div>
-            <div className="text-center">Products</div>
-            <div className="text-center">Status</div>
-            <div className="text-right">Actions</div>
-          </div>
+          <table className="w-full">
+            <thead className="bg-pink-50">
+              <tr className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-pink-500">
+                <th className="px-6 py-4 text-left">Image</th>
+                <th className="px-6 py-4 text-left">Category Name</th>
+                <th className="px-6 py-4 text-left">Description</th>
+                <th className="px-6 py-4 text-center">Products</th>
+                <th className="px-6 py-4 text-center">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
+              </tr>
+            </thead>
 
-          <div className="divide-y divide-pink-50">
+            <tbody className="divide-y divide-pink-50">
             {categories.map((category) => (
-              <div
+              <tr
                 key={category.id}
-                className="grid grid-cols-[1.5fr,2fr,3fr,1.2fr,1.3fr,1.5fr] items-center bg-white/60 px-6 py-4 hover:bg-pink-50"
+                className="bg-white/60 hover:bg-pink-50"
               >
                 {/* Image */}
-                <div className="flex items-center">
-                  <div className="h-10 w-10 overflow-hidden rounded-xl bg-pink-100">
-                    <img
-                      src={category.image}
-                      alt={category.name}
-                      className="h-full w-full object-cover"
-                    />
+                <td className="px-6 py-4">
+                  <div className="flex items-center">
+                    <div className="h-10 w-10 overflow-hidden rounded-xl bg-pink-100">
+                      <img
+                        src={category.image}
+                        alt={category.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
+                </td>
 
                 {/* Category name */}
-                <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-pink-900">
-                    {category.name}
-                  </span>
-                  <span className="text-xs text-pink-400 flex items-center gap-1">
-                    <span className="text-[10px]">▢</span>
-                    {category.subTitle}
-                  </span>
-                </div>
+                <td className="px-6 py-4">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-pink-900">
+                      {category.name}
+                    </span>
+                    <span className="text-xs text-pink-400 flex items-center gap-1">
+                      <span className="text-[10px]">▢</span>
+                      {category.subTitle}
+                    </span>
+                  </div>
+                </td>
 
                 {/* Description */}
-                <div className="text-sm text-pink-600">
-                  {category.description}
-                </div>
+                <td className="px-6 py-4">
+                  <div className="text-sm text-pink-600">
+                    {category.description}
+                  </div>
+                </td>
 
                 {/* Products count */}
-                <div className="flex justify-center">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-100 text-xs font-semibold text-pink-700">
-                    {category.productsCount}
+                <td className="px-6 py-4">
+                  <div className="flex justify-center">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-pink-100 text-xs font-semibold text-pink-700">
+                      {category.productsCount}
+                    </div>
                   </div>
-                </div>
+                </td>
 
                 {/* Status */}
-                <div className="flex justify-center">
-                  <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
-                    {category.status}
-                  </span>
-                </div>
+                <td className="px-6 py-4">
+                  <div className="flex justify-center">
+                    <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
+                      {category.status}
+                    </span>
+                  </div>
+                </td>
 
                 {/* Actions */}
-                <div className="flex items-center justify-end gap-2">
-                  <button className="rounded-xl bg-pink-600 px-4 py-1.5 text-xs font-medium text-white shadow hover:bg-pink-700">
-                    Edit
-                  </button>
-                  <button className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-1.5 text-xs font-medium text-rose-700 hover:bg-rose-100">
-                    Delete
-                  </button>
-                </div>
-              </div>
+                <td className="px-6 py-4">
+                  <div className="flex items-center justify-end gap-2">
+                    <button className="rounded-xl bg-pink-600 px-4 py-1.5 text-xs font-medium text-white shadow hover:bg-pink-700">
+                      Edit
+                    </button>
+                    <button className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-1.5 text-xs font-medium text-rose-700 hover:bg-rose-100">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
             ))}
-          </div>
+            </tbody>
+          </table>
 
           {/* Pagination */}
           <div className="flex flex-col items-center justify-between gap-3 border-t border-pink-50 bg-pink-50/60 px-6 py-4 text-xs text-pink-500 sm:flex-row">
@@ -185,15 +200,6 @@ export default function Categories() {
             </div>
           </div>
         </div>
-
-        {/* Footer Text (same style as Products) */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-2 text-xs text-pink-400 sm:flex-row">
-          <div>© 2024 eya. All rights reserved.</div>
-          <div>
-            Made with <span className="text-pink-500">♥</span> by eya
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
